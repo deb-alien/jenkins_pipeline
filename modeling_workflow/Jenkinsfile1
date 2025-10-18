@@ -12,7 +12,7 @@ pipeline {
             environment {
                 LOG_LEVEL = "INFO"
             }
-            
+
             steps {
                 echo "Building version ${RELEASE_VERSION} with log level ${LOG_LEVEL}"
                 // Add build commands here
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "Running tests for version ${RELEASE_VERSION}, but not log level ${LOG_LEVEL}"
+                echo "Running tests for version ${RELEASE_VERSION}"
                 // Add test commands here
             }
         }
