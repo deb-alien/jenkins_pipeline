@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from version control
-                script{
+                script {
                     def gitRepoUrl = 'https://github.com/deb-alien/jenkins_pipeline.git'
                 
                     checkout([$class: 'GitSCM', 
