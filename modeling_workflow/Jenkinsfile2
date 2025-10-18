@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy') {
             input {
-                message: "Deploy version ${RELEASE_VERSION}?"
+                message: "Ready to deploy?",
                 ok: "Deploy Now"
                 parameters {
                     string(name: 'TARGET_ENVIRONMENT', defaultValue: 'PROD', description: 'Environment to deploy to')
