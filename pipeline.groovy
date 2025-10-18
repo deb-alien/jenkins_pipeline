@@ -10,12 +10,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from version control
-                def gitRepoUrl = 'https://github.com/deb-alien/jenkins_pipeline.git'
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
-                    userRemoteConfigs: [[url: gitRepoUrl]], 
-                    extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
-                ])
+                script{
+                    def gitRepoUrl = 'https://github.com/deb-alien/jenkins_pipeline.git'
+                
+                    checkout([$class: 'GitSCM', 
+                        branches: [[name: '*/main']], 
+                        userRemoteConfigs: [[url: gitRepoUrl]], 
+                        extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
+                    ])
+                }
             }
         }
 
