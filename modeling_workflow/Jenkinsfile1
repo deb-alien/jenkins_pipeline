@@ -1,0 +1,29 @@
+pipeline {
+    agent any 
+
+    environment {
+        RELEASE_VERSION = "1.0.${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage("Build") {
+            agent any
+
+            environment {
+                LOG_LEVEL = "INFO"
+            }
+            
+            steps {
+                echo "Building version ${RELEASE_VERSION} with log level ${LOG_LEVEL}"
+                // Add build commands here
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests for version ${RELEASE_VERSION}, but not log level ${LOG_LEVEL}"
+                // Add test commands here
+            }
+        }
+    }
+}
