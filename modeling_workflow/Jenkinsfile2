@@ -1,0 +1,47 @@
+pipeline {
+    agent any 
+
+    environment {
+        RELEASE_VERSION = "1.0.${BUILD_NUMBER}"
+    }
+    stages {
+        stage("Build") {
+            agent any
+
+            environment {
+                LOG_LEVEL = "INFO"
+            }
+
+            steps {
+                echo "Building version ${RELEASE_VERSION} with log level ${LOG_LEVEL}"
+                // Add build commands here
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests for version ${RELEASE_VERSION}"
+                // Add test commands here
+            }
+        }
+
+        stage('Deploy') {
+            input {
+                message: "Deploy version ${RELEASE_VERSION}?"
+                ok: "Deploy Now"
+                parameters {
+                    string(name: 'TARGET_ENVIRONMENT', defaultValue: 'PROD', description: 'Environment to deploy to')
+                }
+            }
+            steps {
+                echo "Deploying version ${RELEASE_VERSION} to environment ${TARGET_ENVIRONMENT}"
+                // Add deploy commands here
+            }
+        }
+    }
+    post {
+        always {
+            echo "Print whether the deployment was triggered or not."
+        }
+    }
+}
