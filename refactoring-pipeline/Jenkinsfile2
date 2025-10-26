@@ -29,9 +29,9 @@ pipeline {
         }
 
         stage('Build') {
-             echo "Building version: ${VERSION} with suffix: ${RELEASE_VERSION}"
 
             steps {
+                echo "Building version: ${VERSION} with suffix: ${RELEASE_VERSION}"
                 dir('./samples/java-tomcat-sample') {
                     sh '''
                         mvn versions:set -DnewVersion="${VERSION}"-SNAPSHOT
